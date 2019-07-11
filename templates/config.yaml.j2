@@ -47,7 +47,7 @@ control:
     {% endfor %}
   {% endif %}
 
-  {% if appoptics_gobal_tags is defined and appoptics_gobal_tags is mapping %}
+  {% if appoptics_gobal_tags is defined and appoptics_gobal_tags is mapping and appoptics_gobal_tags | length %}
   tags:
     /:
   {% for key, value in appoptics_gobal_tags.items() %}
