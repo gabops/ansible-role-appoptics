@@ -1,0 +1,40 @@
+---
+- name: Set appoptics agent package name
+  set_fact:
+    appoptics_agent_package: "{{ __appoptics_agent_package }}"
+  when: appoptics_agent_package is not defined
+
+- name: Set appoptics agent repository
+  set_fact:
+    appoptics_agent_repository: "{{ __appoptics_agent_repository }}"
+  when: appoptics_agent_repository is not defined
+
+- name: Set appoptics installation path
+  set_fact:
+    appoptics_installation_path: "{{ __appoptics_installation_path }}"
+  when: appoptics_installation_path is not defined
+
+- name: Set appoptics config file path
+  set_fact:
+    appoptics_config_file_path: "{{ __appoptics_config_file_path }}"
+  when: appoptics_config_file_path is not defined
+
+- name: Set appoptics yum repository name
+  set_fact:
+    appoptics_yum_repository_name: "{{ __appoptics_yum_repository_name }}"
+  when: appoptics_yum_repository_name is not defined and ansible_os_family == "RedHat"
+
+- name: Set appoptics yum repository description
+  set_fact:
+    appoptics_yum_repository_description: "{{ __appoptics_yum_repository_description }}"
+  when: appoptics_yum_repository_description is not defined and ansible_os_family == "RedHat"
+
+- name: Set appoptics service name
+  set_fact:
+    appoptics_service_name: "{{ __appoptics_service_name }}"
+  when: appoptics_service_name is not defined
+
+- name: Set appoptics user name
+  set_fact:
+    appoptics_user: "{{ __appoptics_user }}"
+  when: appoptics_user is not defined

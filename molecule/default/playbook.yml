@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    appoptics_plugin_publisher_token: "1234abcd"
+    appoptics_metrics_tags:
+      /:
+        environment: testing
+      /nginx:
+        application: foo
+  roles:
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"

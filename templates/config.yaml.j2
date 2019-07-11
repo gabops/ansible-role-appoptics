@@ -1,0 +1,74 @@
+#jinja2: lstrip_blocks: True
+---
+# {{ ansible_managed }}
+
+{% if appoptics_log_level is defined and appoptics_log_level | length %}
+log_level: {{ appoptics_log_level }}
+{% endif %}
+log_path: {{ appoptics_log_path }}
+log_format: {{ appoptics_log_format }}
+
+control:
+  auto_discover_path: {{ appoptics_auto_discover_path }}
+  plugin_trust_level: {{ appoptics_plugin_trust_level }}
+  {% if appoptics_tls_cert_path is defined and appoptics_tls_cert_path | length and 
+  appoptics_tls_key_path is defined and appoptics_tls_key_path | length and
+  appoptics_tls_key_path is defined and appoptics_tls_key_path | length %}
+  tls_cert_path: {{ appoptics_tls_cert_path }}
+  tls_key_path: {{ appoptics_tls_key_path }}
+  {% endif %}
+  {% if appoptics_plugin_tls_cert_path is defined and appoptics_plugin_tls_cert_path | length %}
+  plugin_tls_cert_path: {{ appoptics_plugin_tls_cert_path }}
+  {% endif %}
+  {% if appoptics_plugin_tls_key_path is defined and appoptics_plugin_tls_key_path | length %}
+  plugin_tls_key_path: {{ appoptics_plugin_tls_key_path }}
+  {% endif %}
+  {% if appoptics_ca_cert_paths is defined and appoptics_ca_cert_paths | length %}
+  ca_cert_paths: /tmp/small-setup-ca.crt:/tmp/medium-setup-ca.crt:/tmp/ca-certs/
+  {% endif %}
+  plugin_load_timeout: {{ appoptics_plugin_load_timeout }}
+  listen_addr: {{ appoptics_listen_address }}
+  listen_port: {{ appoptics_listen_port }}
+  temp_dir_path: {{ appoptics_temp_dir_path }}
+  temp_dir_enable: {{ appoptics_temp_dir_enable | lower }}
+  plugin_path: {{ appoptics_plugin_path }}
+  task_path: {{ appoptics_task_path }}
+
+  plugins:
+    include: {{ appoptics_plugins_include }}
+  {% if appoptics_publisher_plugins is defined %}
+    publisher:
+    {% for plugin in appoptics_publisher_plugins %}
+      {{ plugin["plugin_name"] }}:
+        all:
+          {% for key, value in plugin["config"].items() %}
+          {{ key }}: {{ value }}
+          {% endfor %}
+    {% endfor %}
+  {% endif %}
+
+  {% if appoptics_gobal_tags is defined and appoptics_gobal_tags is mapping %}
+  tags:
+    /:
+  {% for key, value in appoptics_gobal_tags.items() %}
+      {{ key }}: {{ value }}
+  {% endfor %}
+  {% endif %}
+
+{% if appoptics_rest_api_enable %}
+restapi:
+  enable: {{ appoptics_rest_api_enable | lower }}
+  https: {{ appoptics_rest_api_https | lower }}
+  # rest_auth enables authentication for the REST API. Default value is false
+  # rest_auth: {{ appoptics_rest_api_rest_auth | lower }}
+  # rest_auth_password: {{ appoptics_rest_api_rest_auth_pwd }}
+  # rest_certificate is the path to the certificate to use for REST API when HTTPS is also enabled.
+  # When https is set to true and rest_certificate and rest_key are not present swisnap is creating cert and key
+  # under paths: /tmp/cert.pem and /tmp/key.pem
+  # rest_certificate: {{ appoptics_rest_api_rest_certificate }}
+  # rest_key is the path to the private key for the certificate in use by the REST API
+  # when HTTPs is enabled.
+  # rest_key: {{ appoptics_rest_api_rest_key }}
+  #port sets the port to start the REST API server on. Default is 21413
+  port: {{ appoptics_rest_api_rest_port }}
+{% endif %}

@@ -1,0 +1,40 @@
+---
+- block:
+    - name: Add repository (RedHat)
+      yum_repository:
+        name: "{{ appoptics_yum_repository_name }}"
+        description: "{{ appoptics_yum_repository_description }}"
+        baseurl: "{{ appoptics_agent_repository }}/el/{{ ansible_distribution_major_version }}/$basearch"
+        gpgkey: "{{ appoptics_agent_repository }}/gpgkey"
+        gpgcheck: no
+        sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+        sslverify: yes
+
+    - name: Install agent (RedHat)
+      yum:
+        name: "{{ appoptics_agent_package }}"
+        state: present
+      environment:
+        AGENT_INSTALL_ONLY: 1
+  when: appoptics_add_repository | bool and ansible_os_family == "RedHat"
+
+- block:
+    - name: Add repository (Debian)
+      apt_repository:
+        repo: deb {{ appoptics_agent_repository }}/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} main
+        update_cache: false
+        state: present
+
+    - name: Add repository key (Debian)
+      apt_key:
+        url: https://packagecloud.io/solarwinds/swisnap/gpgkey
+        state: present
+
+    - name: Install agent (Debian)
+      apt:
+        name: "{{ appoptics_agent_package }}"
+        state: present
+        update_cache: true
+      environment:
+        AGENT_INSTALL_ONLY: 1
+  when: appoptics_add_repository | bool and ansible_os_family == "Debian"

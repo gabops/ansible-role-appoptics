@@ -1,0 +1,6 @@
+---
+- name: restart appoptics
+  service:
+    name: "{{ appoptics_service_name }}"
+    state: restarted
+  when: appoptics_managed_config_file | bool and appoptics_service_started | bool

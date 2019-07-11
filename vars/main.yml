@@ -1,0 +1,9 @@
+---
+__appoptics_agent_package: solarwinds-snap-agent
+__appoptics_agent_repository: https://packagecloud.io/solarwinds/swisnap
+__appoptics_installation_path: /opt/SolarWinds/Snap
+__appoptics_config_file_path: "{{ appoptics_installation_path }}/etc/config.yaml"
+__appoptics_yum_repository_name: solarwinds_swisnap
+__appoptics_yum_repository_description: AppOptics agent repository
+__appoptics_service_name: swisnapd
+__appoptics_user: solarwinds
