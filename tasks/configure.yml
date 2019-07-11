@@ -6,7 +6,6 @@
     owner: "{{ appoptics_user }}"
     group: "{{ appoptics_user }}"
     mode: 0644
-    force: true
   notify: restart appoptics
   when: appoptics_managed_config_file | bool
 
