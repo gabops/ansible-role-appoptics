@@ -19,6 +19,11 @@
     appoptics_config_file_path: "{{ __appoptics_config_file_path }}"
   when: appoptics_config_file_path is not defined
 
+- name: Set appoptics binaries path
+  set_fact:
+    appoptics_binaries_path: "{{ __appoptics_binaries_path }}"
+  when: appoptics_binaries_path is not defined
+
 - name: Set appoptics yum repository name
   set_fact:
     appoptics_yum_repository_name: "{{ __appoptics_yum_repository_name }}"
