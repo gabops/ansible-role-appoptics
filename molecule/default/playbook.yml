@@ -2,7 +2,6 @@
 - name: Converge
   hosts: all
   vars:
-    appoptics_managed_config_file: false
     appoptics_token: secretoken123abc
     appoptics_url: https://api.appoptics.com/v1/measurements
     appoptics_hostname_alias: hostname-01
