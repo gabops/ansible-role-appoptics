@@ -1,5 +1,4 @@
 ---
-appoptics_add_repository: true
 appoptics_managed_config_file: true
 appoptics_service_started: true
 
@@ -10,11 +9,11 @@ appoptics_log_format: text
 appoptics_auto_discover_path: /opt/SolarWinds/Snap/autoload
 appoptics_plugin_trust_level: 0
 
-appoptics_tls_cert_path: /tmp/snaptest-cli.crt
-appoptics_tls_key_path: /tmp/snaptest-cli.key
-appoptics_plugin_tls_key_path: /tmp/snaptest-srv.key
+appoptics_tls_cert_path: ""
+appoptics_tls_key_path: ""
+appoptics_plugin_tls_key_path: ""
 appoptics_plugin_tls_cert_path: ""
-appoptics_ca_cert_paths: /tmp/small-setup-ca.crt:/tmp/medium-setup-ca.crt:/tmp/ca-certs/
+appoptics_ca_cert_paths: ""
 
 appoptics_plugin_load_timeout: 5
 appoptics_listen_address: 127.0.0.1
@@ -25,42 +24,20 @@ appoptics_plugin_path: /opt/SolarWinds/Snap/bin
 appoptics_task_path: /opt/SolarWinds/Snap/etc/tasks.d
 appoptics_plugins_include: /opt/SolarWinds/Snap/etc/plugins.d
 
-appoptics_publisher_plugins:
-  - plugin_name: publisher-appoptics
-    config:
-      token: ""
-      url: https://api.appoptics.com/v1/measurements
-      hostname_alias: hostname-01
-      proxy_url: ""
-      proxy_user: ""
-      ec2_check_timeout: 1s
-  - plugin_name: publisher-processes
-    config:
-      token: ""
-      url: https://api.appoptics.com/v1/measurements
+appoptics_token: ""
+appoptics_url: https://api.appoptics.com/v1/measurements
+appoptics_hostname_alias: ""
+appoptics_proxy_url: ""
+appoptics_proxy_user: ""
+appoptics_proxy_password: ""
+appoptics_ec2_check_timeout: 5s
 
-appoptics_collector_plugins:
-  - plugin_name: docker
-    config:
-      endpoint: unix:///var/run/docker.sock
-      procfs: /proc
-      interval: 60s
-    load:
-      plugin: collector
-      task: test.yaml
-    task_config:
+appoptics_global_tags: {}
 
-
-appoptics_gobal_tags:
-  foo: bar
-  helo: world
-  test: test
-  blabla: blabla
-
-appoptics_rest_api_https: false
 appoptics_rest_api_enable: false
+appoptics_rest_api_https: false
 appoptics_rest_api_rest_auth: false
-appoptics_rest_api_rest_auth_pwd: ""
+appoptics_rest_api_rest_auth_password: ""
 appoptics_rest_api_rest_certificate: ""
 appoptics_rest_api_rest_key: ""
 appoptics_rest_api_rest_port: 21413
