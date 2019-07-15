@@ -2,7 +2,7 @@
 ---
 # {{ ansible_managed }}
 
-{% if appoptics_log_level is defined and appoptics_log_level | length %}
+{% if appoptics_log_level | length %}
 log_level: {{ appoptics_log_level }}
 {% endif %}
 log_path: {{ appoptics_log_path }}
@@ -11,19 +11,19 @@ log_format: {{ appoptics_log_format }}
 control:
   auto_discover_path: {{ appoptics_auto_discover_path }}
   plugin_trust_level: {{ appoptics_plugin_trust_level }}
-  {% if appoptics_tls_cert_path is defined and appoptics_tls_cert_path | length and 
-  appoptics_tls_key_path is defined and appoptics_tls_key_path | length and
-  appoptics_tls_key_path is defined and appoptics_tls_key_path | length %}
+  {% if appoptics_tls_cert_path | length
+     and appoptics_tls_key_path | length
+     and appoptics_tls_key_path | length %}
   tls_cert_path: {{ appoptics_tls_cert_path }}
   tls_key_path: {{ appoptics_tls_key_path }}
   {% endif %}
-  {% if appoptics_plugin_tls_cert_path is defined and appoptics_plugin_tls_cert_path | length %}
+  {% if appoptics_plugin_tls_cert_path | length %}
   plugin_tls_cert_path: {{ appoptics_plugin_tls_cert_path }}
   {% endif %}
-  {% if appoptics_plugin_tls_key_path is defined and appoptics_plugin_tls_key_path | length %}
+  {% if appoptics_plugin_tls_key_path | length %}
   plugin_tls_key_path: {{ appoptics_plugin_tls_key_path }}
   {% endif %}
-  {% if appoptics_ca_cert_paths is defined and appoptics_ca_cert_paths | length %}
+  {% if appoptics_ca_cert_paths | length %}
   ca_cert_paths: /tmp/small-setup-ca.crt:/tmp/medium-setup-ca.crt:/tmp/ca-certs/
   {% endif %}
   plugin_load_timeout: {{ appoptics_plugin_load_timeout }}
@@ -36,21 +36,35 @@ control:
 
   plugins:
     include: {{ appoptics_plugins_include }}
-  {% if appoptics_publisher_plugins is defined %}
     publisher:
-    {% for plugin in appoptics_publisher_plugins %}
-      {{ plugin["plugin_name"] }}:
+      publisher-appoptics
         all:
-          {% for key, value in plugin["config"].items() %}
-          {{ key }}: {{ value }}
-          {% endfor %}
-    {% endfor %}
-  {% endif %}
+          url: {{ appoptics_url }}
+          token: {{ appoptics_token }}
+          {% if appoptics_hostname_alias | length %}
+          hostname_alias: {{ appoptics_hostname_alias }}
+          {% endif %}
+          {% if appoptics_proxy_url | length %}
+          proxy_url: {{ appoptics_proxy_url }}
+          {% endif %}
+          {% if appoptics_proxy_user | length %}
+          proxy_user: {{ appoptics_proxy_user }}
+          {% endif %}
+          {% if appoptics_proxy_password | length %}
+          proxy_password: {{ appoptics_proxy_password }}
+          {% endif %}
+          {% if appoptics_ec2_check_timeout | length %}
+          ec2_check_timeout: {{ appoptics_ec2_check_timeout }}
+          {% endif %}
+      publisher-processes:
+        all:
+          url: {{ appoptics_token }}
+          token: {{ appoptics_url }}
 
-  {% if appoptics_gobal_tags is defined and appoptics_gobal_tags is mapping and appoptics_gobal_tags | length %}
+  {% if appoptics_global_tags is defined and appoptics_global_tags is mapping and appoptics_global_tags | length %}
   tags:
     /:
-  {% for key, value in appoptics_gobal_tags.items() %}
+  {% for key, value in appoptics_global_tags.items() %}
       {{ key }}: {{ value }}
   {% endfor %}
   {% endif %}
@@ -58,17 +72,22 @@ control:
 {% if appoptics_rest_api_enable %}
 restapi:
   enable: {{ appoptics_rest_api_enable | lower }}
+  {% if appoptics_rest_api_https %}
   https: {{ appoptics_rest_api_https | lower }}
-  # rest_auth enables authentication for the REST API. Default value is false
-  # rest_auth: {{ appoptics_rest_api_rest_auth | lower }}
-  # rest_auth_password: {{ appoptics_rest_api_rest_auth_pwd }}
-  # rest_certificate is the path to the certificate to use for REST API when HTTPS is also enabled.
-  # When https is set to true and rest_certificate and rest_key are not present swisnap is creating cert and key
-  # under paths: /tmp/cert.pem and /tmp/key.pem
-  # rest_certificate: {{ appoptics_rest_api_rest_certificate }}
-  # rest_key is the path to the private key for the certificate in use by the REST API
-  # when HTTPs is enabled.
-  # rest_key: {{ appoptics_rest_api_rest_key }}
-  #port sets the port to start the REST API server on. Default is 21413
+  {% endif %}
+  {% if appoptics_rest_api_rest_auth %}
+  rest_auth: {{ appoptics_rest_api_rest_auth | lower }}
+  {% endif %}
+  {% if appoptics_rest_api_rest_auth_password | length %}
+  rest_auth_password: {{ appoptics_rest_api_rest_auth_password }}
+  {% endif %}
+  {% if appoptics_rest_api_rest_certificate | length  %}
+  rest_certificate: {{ appoptics_rest_api_rest_certificate }}
+  {% endif %}
+  {% if appoptics_rest_api_rest_key | length  %}
+  rest_key: {{ appoptics_rest_api_rest_key }}
+  {% endif %}
+  {% if appoptics_rest_api_rest_port is defined %}
   port: {{ appoptics_rest_api_rest_port }}
+  {% endif %}
 {% endif %}
