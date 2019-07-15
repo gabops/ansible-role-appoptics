@@ -37,7 +37,7 @@ control:
   plugins:
     include: {{ appoptics_plugins_include }}
     publisher:
-      publisher-appoptics
+      publisher-appoptics:
         all:
           url: {{ appoptics_url }}
           token: {{ appoptics_token }}
