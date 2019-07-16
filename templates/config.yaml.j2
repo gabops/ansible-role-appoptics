@@ -40,7 +40,7 @@ control:
       publisher-appoptics:
         all:
           url: {{ appoptics_url }}
-          token: {{ appoptics_token }}
+          token: "{{ appoptics_token }}"
           {% if appoptics_hostname_alias | length %}
           hostname_alias: {{ appoptics_hostname_alias }}
           {% endif %}
@@ -50,7 +50,7 @@ control:
           {% if appoptics_proxy_user | length %}
           proxy_user: {{ appoptics_proxy_user }}
           {% endif %}
-          {% if appoptics_proxy_password | length %}
+          {% if (appoptics_proxy_password | string) | length %}
           proxy_password: {{ appoptics_proxy_password }}
           {% endif %}
           {% if appoptics_ec2_check_timeout | length %}
@@ -58,8 +58,8 @@ control:
           {% endif %}
       publisher-processes:
         all:
-          url: {{ appoptics_token }}
-          token: {{ appoptics_url }}
+          url: {{ appoptics_url }}
+          token: "{{ appoptics_token }}"
 
   {% if appoptics_global_tags is defined and appoptics_global_tags is mapping and appoptics_global_tags | length %}
   tags:
@@ -78,13 +78,13 @@ restapi:
   {% if appoptics_rest_api_rest_auth %}
   rest_auth: {{ appoptics_rest_api_rest_auth | lower }}
   {% endif %}
-  {% if appoptics_rest_api_rest_auth_password | length %}
-  rest_auth_password: {{ appoptics_rest_api_rest_auth_password }}
+  {% if (appoptics_rest_api_rest_auth_password | string) | length %}
+  rest_auth_password: "{{ appoptics_rest_api_rest_auth_password }}"
   {% endif %}
-  {% if appoptics_rest_api_rest_certificate | length  %}
+  {% if appoptics_rest_api_rest_certificate | length %}
   rest_certificate: {{ appoptics_rest_api_rest_certificate }}
   {% endif %}
-  {% if appoptics_rest_api_rest_key | length  %}
+  {% if appoptics_rest_api_rest_key | length %}
   rest_key: {{ appoptics_rest_api_rest_key }}
   {% endif %}
   {% if appoptics_rest_api_rest_port is defined %}
