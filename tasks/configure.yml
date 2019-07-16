@@ -8,14 +8,3 @@
     mode: 0644
   notify: restart appoptics
   when: appoptics_managed_config_file | bool
-
-- name: Configure collector plugins
-  template:
-    src: collector-plugin.yaml.j2
-    dest: "{{ appoptics_plugins_include }}/{{ item['plugin_name'] }}.yaml"
-    owner: "{{ appoptics_user }}"
-    group: "{{ appoptics_user }}"
-    mode: 0644
-    force: true
-  when: appoptics_collector_plugins is defined
-  loop: "{{ appoptics_collector_plugins }}"
