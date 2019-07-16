@@ -16,7 +16,7 @@
         state: present
       environment:
         AGENT_INSTALL_ONLY: 1
-  when: appoptics_add_repository | bool and ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
 
 - block:
     - name: Add repository (Debian)
@@ -37,4 +37,4 @@
         update_cache: true
       environment:
         AGENT_INSTALL_ONLY: 1
-  when: appoptics_add_repository | bool and ansible_os_family == "Debian"
+  when: ansible_os_family == "Debian"
