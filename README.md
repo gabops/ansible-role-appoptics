@@ -55,6 +55,8 @@ Role Variables
 - `appoptics_rest_api_rest_key: ""` -> The path to the private key for the certificate in use by the REST API when HTTPs is enabled.
 - `appoptics_rest_api_rest_port: 21413` -> Sets the port to start the REST API server on.
 
+> For more information about agent configuration see [Appoptics agent configuration](https://docs.appoptics.com/kb/host_infrastructure/host_agent/configuration/)
+
 Dependencies
 ------------
 
