@@ -1,5 +1,6 @@
 gabops.appoptics
 ================
+[![Build Status](https://travis-ci.org/gabops/ansible-role-appoptics.svg?branch=master)](https://travis-ci.org/gabops/ansible-role-appoptics)
 
 Installs and configures SolarWinds Appoptics
 
