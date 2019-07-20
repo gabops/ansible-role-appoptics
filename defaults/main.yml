@@ -15,7 +15,7 @@ appoptics_plugin_tls_key_path: ""
 appoptics_plugin_tls_cert_path: ""
 appoptics_ca_cert_paths: ""
 
-appoptics_plugin_load_timeout: 5
+appoptics_plugin_load_timeout: 15
 appoptics_listen_address: 127.0.0.1
 appoptics_listen_port: 21414
 appoptics_temp_dir_path: /tmp/SolarWinds/Snap

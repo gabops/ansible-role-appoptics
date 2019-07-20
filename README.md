@@ -39,7 +39,7 @@ Role Variables
 |appoptics_proxy_url | "" | Sets the proxy url. |
 |appoptics_proxy_user | "" | Sets the user for authenticating against the proxy configured in 'proxy url' field. |
 |appoptics_proxy_password | "" | Sets the password for authenticating against the proxy configured in 'proxy url' field. |
-|appoptics_ec2_check_timeout | 1s | Sets timeout for querying EC2 instance metadata URL to determine if agent is running on EC2 (or OpenStack). |
+|appoptics_ec2_check_timeout | 5s | Sets timeout for querying EC2 instance metadata URL to determine if agent is running on EC2 (or OpenStack). |
 |appoptics_gobal_tags | [] | Defines global tags that will be applied to all collected metrics. |
 |appoptics_rest_api_enable | false | Controls enabling or disabling of the REST API for the daemon. |
 |appoptics_rest_api_https | false | Enables HTTPS for the REST API. If no default certificate and key are provided, then the REST API will generate a private and public key to use for communication. |
