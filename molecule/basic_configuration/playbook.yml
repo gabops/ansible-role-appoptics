@@ -1,0 +1,24 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    appoptics_token: secretoken123abc
+    appoptics_url: https://api.appoptics.com/v1/measurements
+    appoptics_hostname_alias: hostname-01
+    appoptics_proxy_url: https://192.168.0.1:8080
+    appoptics_proxy_user: user
+    appoptics_proxy_password: 1234567
+    appoptics_ec2_check_timeout: 5s
+    appoptics_global_tags:
+      environment: test
+      foo: bar
+    appoptics_tls_cert_path: /tmp/snaptest-cli.crt
+    appoptics_tls_key_path: /tmp/snaptest-cli.key
+    appoptics_plugin_tls_key_path: /tmp/snaptest-srv.key
+    appoptics_ca_cert_paths: /tmp/small-setup-ca.crt:/tmp/medium-setup-ca.crt:/tmp/ca-certs/
+    appoptics_rest_api_enable: true
+    appoptics_rest_api_rest_auth: true
+    appoptics_rest_api_rest_auth_password: 123456
+    appoptics_rest_api_rest_port: 9999
+  roles:
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') | basename }}"
