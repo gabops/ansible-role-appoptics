@@ -43,9 +43,9 @@ appoptics_rest_api_rest_key: ""
 appoptics_rest_api_rest_port: 21413
 
 appoptics_plugins:
-  - name: ""
-    config: {}
+  - file_name: ""
+    content: {}
 
 appoptics_tasks:
-  - name: ""
-    config: {}
+  - file_name: ""
+    content: {}
