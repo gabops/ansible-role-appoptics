@@ -18,25 +18,6 @@ def test_appoptics_config(host):
     f = host.file('/opt/SolarWinds/Snap/etc/config.yaml')
 
     assert f.exists
-    assert f.contains('environment: test')
-    assert f.user == 'solarwinds'
-    assert f.group == 'solarwinds'
-
-
-def test_appoptics_plugins(host):
-    f = host.file('/opt/SolarWinds/Snap/etc/plugins.d/plugin-test.yaml')
-
-    assert f.exists
-    assert f.contains('foo:passwd')
-    assert f.user == 'solarwinds'
-    assert f.group == 'solarwinds'
-
-
-def test_appoptics_tasks(host):
-    f = host.file('/opt/SolarWinds/Snap/etc/tasks.d/task-test.yaml')
-
-    assert f.exists
-    assert f.contains('/mysql/aborted/clients')
     assert f.user == 'solarwinds'
     assert f.group == 'solarwinds'
 
