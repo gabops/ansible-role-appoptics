@@ -55,6 +55,8 @@ Role Variables
 
 > For more detailed information about agent configuration see [Appoptics agent configuration](https://docs.appoptics.com/kb/host_infrastructure/host_agent/configuration/)
 
+> For more detailed information about plugins and tasks configuration see [Appoptics plugins and tasks configuration](https://docs.appoptics.com/kb/host_infrastructure/community_plugins/)
+ 
 Dependencies
 ------------
 
