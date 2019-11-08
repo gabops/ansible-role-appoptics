@@ -4,7 +4,7 @@
       yum_repository:
         name: "{{ appoptics_yum_repository_name }}"
         description: "{{ appoptics_yum_repository_description }}"
-        baseurl: "{{ appoptics_agent_repository }}/el/{{ ansible_distribution_major_version }}/$basearch"
+        baseurl: "{{ appoptics_agent_repository }}/el/{{ distro_version }}/$basearch"
         gpgkey: "{{ appoptics_agent_repository }}/gpgkey"
         gpgcheck: no
         sslcacert: /etc/pki/tls/certs/ca-bundle.crt
