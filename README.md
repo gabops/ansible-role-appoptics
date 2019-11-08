@@ -49,10 +49,11 @@ Role Variables
 |appoptics_rest_api_rest_certificate | "" | Defines the path to the certificate to use for REST API when HTTPS is also enabled. |
 |appoptics_rest_api_rest_key | "" | The path to the private key for the certificate in use by the REST API when HTTPs is enabled. |
 |appoptics_rest_api_rest_port | 21413 | Sets the port to start the REST API server on. |
+|appoptics_plugins| [{file_name: "", content: {} }]| Defines the plugins to be used for appoptics. The content of the "content" variable will be dumped directly in the file declared in "file_name:" |
+|appoptics_tasks| [{file_name: "", content: {} }]| Defines the tasks to be used for appoptics. The content of the "content" variable will be dumped directly in the file declared in "file_name:" |
+
 
 > For more detailed information about agent configuration see [Appoptics agent configuration](https://docs.appoptics.com/kb/host_infrastructure/host_agent/configuration/)
-
-> This role also provides the possibility of overwriting any variable in the **vars/** directory. You **never should do it**. This feature only exists for covering any unexpected scenario you might find. For doing it, just declare the variable/variables without the double underscore on your group_vars, host_vars, command line etc as you would do for a variable in defaults/.
 
 Dependencies
 ------------
