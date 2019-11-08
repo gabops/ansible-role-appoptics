@@ -1,12 +1,12 @@
 ---
 - name: Set ansible distribution version for Amazon linux 1
   set_fact:
-    ansible_distribution_major_version: 6
+    ansible_distribution_major_version: "6"
   when: ansible_distribution == "Amazon" and ansible_distribution_version == "NA"
 
 - name: Set ansible distribution version for Amazon linux 2
   set_fact:
-    ansible_distribution_major_version: 7
+    ansible_distribution_major_version: "7"
   when: ansible_distribution == "Amazon" and ansible_distribution_version == "2"
 
 - name: Set appoptics agent package name
