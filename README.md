@@ -78,6 +78,29 @@ Example Playbook
         appoptics_global_tags:
           environment: production
           project: foo
+        appoptics_plugins:
+          - file_name: plugin-test.yaml
+            content:
+              collector:
+                mysql:
+                  all:
+                    mysql_connection_string: "foo:passwd@tcp(localhost:3306)/"
+              load:
+                plugin: snap-plugin-collector-aomysql
+                task: task-test.yml
+        appoptics_tasks:
+          - file_name: task-test.yaml
+            content:
+              version: 1
+              schedule:
+                type: cron
+                interval: 0 * * * * *
+              workflow:
+                collect:
+                  metrics:
+                    /mysql/aborted/clients: {}
+              publish:
+                - plugin_name: publisher-appoptic
       roles:
          - role: gabops.appoptics
 ```
