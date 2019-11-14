@@ -20,10 +20,10 @@ env:
     - TEST_DISTRO: ubuntu:18.04
 
 install:
-  - pip install molecule==2.22rc1 docker flake8
+  - pip install -r molecule/requirements.txt
 
 script:
-  - molecule test
+  - molecule test --all
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

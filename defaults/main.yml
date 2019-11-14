@@ -41,3 +41,11 @@ appoptics_rest_api_rest_auth_password: ""
 appoptics_rest_api_rest_certificate: ""
 appoptics_rest_api_rest_key: ""
 appoptics_rest_api_rest_port: 21413
+
+appoptics_plugins:
+  - file_name: ""
+    content: {}
+
+appoptics_tasks:
+  - file_name: ""
+    content: {}

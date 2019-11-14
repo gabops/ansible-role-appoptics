@@ -18,6 +18,7 @@ def test_appoptics_config(host):
     f = host.file('/opt/SolarWinds/Snap/etc/config.yaml')
 
     assert f.exists
+    assert f.contains('environment: test')
     assert f.user == 'solarwinds'
     assert f.group == 'solarwinds'
 

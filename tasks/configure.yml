@@ -1,10 +1,34 @@
 ---
-- name: Configure appoptics managed configuration file
+- name: Configure Appoptics managed configuration file
   template:
     src: config.yaml.j2
     dest: "{{ appoptics_config_file_path }}"
     owner: "{{ appoptics_user }}"
-    group: "{{ appoptics_user }}"
-    mode: 0644
+    group: "{{ appoptics_group }}"
+    mode: "{{ appoptics_files_mode }}"
   notify: restart appoptics
   when: appoptics_managed_config_file | bool
+
+- name: Configure Appoptics plugins
+  copy:
+    dest: "{{ appoptics_plugins_config_path }}/{{ item.file_name }}"
+    owner: "{{ appoptics_user }}"
+    group: "{{ appoptics_group }}"
+    content: |
+      ---
+      {{ item.content | to_nice_yaml(indent=2) }}
+  notify: restart appoptics
+  when: item.file_name | length and item.content | length
+  loop: "{{ appoptics_plugins }}"
+
+- name: Configure Appoptics tasks
+  copy:
+    dest: "{{ appoptics_tasks_config_path }}/{{ item.file_name }}"
+    owner: "{{ appoptics_user }}"
+    group: "{{ appoptics_group }}"
+    content: |
+      ---
+      {{ item.content | to_nice_yaml(indent=2) }}
+  notify: restart appoptics
+  when: item.file_name | length and item.content | length
+  loop: "{{ appoptics_tasks }}"

@@ -1,10 +1,14 @@
 ---
-__appoptics_agent_package: solarwinds-snap-agent
-__appoptics_agent_repository: https://packagecloud.io/solarwinds/swisnap
-__appoptics_installation_path: /opt/SolarWinds/Snap
-__appoptics_binaries_path: /opt/SolarWinds/Snap/bin
-__appoptics_config_file_path: "{{ appoptics_installation_path }}/etc/config.yaml"
-__appoptics_yum_repository_name: solarwinds_swisnap
-__appoptics_yum_repository_description: AppOptics agent repository
-__appoptics_service_name: swisnapd
-__appoptics_user: solarwinds
+appoptics_agent_package: solarwinds-snap-agent
+appoptics_agent_repository: https://packagecloud.io/solarwinds/swisnap
+appoptics_installation_path: /opt/SolarWinds/Snap
+appoptics_binaries_path: /opt/SolarWinds/Snap/bin
+appoptics_config_file_path: "{{ appoptics_installation_path }}/etc/config.yaml"
+appoptics_yum_repository_name: solarwinds_swisnap
+appoptics_yum_repository_description: AppOptics agent repository
+appoptics_service_name: swisnapd
+appoptics_user: solarwinds
+appoptics_group: solarwinds
+appoptics_files_mode: 0644
+appoptics_plugins_config_path: "{{ appoptics_installation_path }}/etc/plugins.d"
+appoptics_tasks_config_path: "{{ appoptics_installation_path }}/etc/tasks.d"
