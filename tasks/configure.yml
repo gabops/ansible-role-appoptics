@@ -14,7 +14,9 @@
     dest: "{{ appoptics_plugins_config_path }}/{{ item.file_name }}"
     owner: "{{ appoptics_user }}"
     group: "{{ appoptics_group }}"
-    content: "{{ item.content | to_nice_yaml(indent=2) }}"
+    content: |
+      ---
+      {{ item.content | to_nice_yaml(indent=2) }}
   notify: restart appoptics
   when: item.file_name | length and item.content | length
   loop: "{{ appoptics_plugins }}"
@@ -24,7 +26,9 @@
     dest: "{{ appoptics_tasks_config_path }}/{{ item.file_name }}"
     owner: "{{ appoptics_user }}"
     group: "{{ appoptics_group }}"
-    content: "{{ item.content | to_nice_yaml(indent=2) }}"
+    content: |
+      ---
+      {{ item.content | to_nice_yaml(indent=2) }}
   notify: restart appoptics
   when: item.file_name | length and item.content | length
   loop: "{{ appoptics_tasks }}"
