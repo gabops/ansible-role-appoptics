@@ -81,17 +81,17 @@ Example Playbook
           environment: production
           project: foo
         appoptics_plugins:
-          - file_name: plugin-test.yaml
+          - file_name: mysql.yaml
             content:
               collector:
                 mysql:
                   all:
-                    mysql_connection_string: "foo:passwd@tcp(localhost:3306)/"
+                    mysql_connection_string: "foo:passwd@tcp(localhost:3306)/mydb"
               load:
                 plugin: snap-plugin-collector-aomysql
-                task: task-test.yml
+                task: task-aomysql.yaml
         appoptics_tasks:
-          - file_name: task-test.yaml
+          - file_name: task-aomysql.yaml
             content:
               version: 1
               schedule:
@@ -102,7 +102,7 @@ Example Playbook
                   metrics:
                     /mysql/aborted/clients: {}
               publish:
-                - plugin_name: publisher-appoptic
+                - plugin_name: publisher-appoptics
       roles:
          - role: gabops.appoptics
 ```
