@@ -15,6 +15,7 @@
     owner: "{{ appoptics_user }}"
     group: "{{ appoptics_group }}"
     content: "{{ item.content | to_nice_yaml(indent=2) }}"
+  notify: restart appoptics
   when: item.file_name | length and item.content | length
   loop: "{{ appoptics_plugins }}"
 
@@ -24,5 +25,6 @@
     owner: "{{ appoptics_user }}"
     group: "{{ appoptics_group }}"
     content: "{{ item.content | to_nice_yaml(indent=2) }}"
+  notify: restart appoptics
   when: item.file_name | length and item.content | length
   loop: "{{ appoptics_tasks }}"
