@@ -1,4 +1,10 @@
 ---
+- name: Configure Appoptics service
+  service:
+    name: "{{ appoptics_service_name }}"
+    state: "{{ appoptics_service_state }}"
+    enabled: "{{ appoptics_service_enabled }}"
+
 - name: Configure Appoptics managed configuration file
   template:
     src: config.yaml.j2
