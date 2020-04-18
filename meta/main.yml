@@ -10,15 +10,18 @@ galaxy_info:
       versions:
         - 6
         - 7
+        - 8
     - name: Amazon
       versions:
         - all
     - name: Amazon Linux 2
       versions:
-        - any
+        - all
     - name: Debian
       versions:
         - jessie
+        - stretch
+        - buster
     - name: Ubuntu
       versions:
         - xenial

@@ -3,4 +3,4 @@
   service:
     name: "{{ appoptics_service_name }}"
     state: restarted
-  when: appoptics_managed_config_file | bool and appoptics_service_started | bool
+  when: appoptics_service_state == "started"

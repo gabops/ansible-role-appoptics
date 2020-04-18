@@ -1,6 +1,7 @@
 ---
 appoptics_managed_config_file: true
-appoptics_service_started: true
+appoptics_service_state: started
+appoptics_service_enabled: true
 
 appoptics_log_level: info
 appoptics_log_path: /var/log/SolarWinds/Snap
