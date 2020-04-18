@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
+  - name: appoptics-molecule-instance-01
     image: ${TEST_DISTRO:-centos:7}
     privileged: True
     command: /sbin/init
