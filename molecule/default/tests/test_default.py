@@ -26,3 +26,4 @@ def test_appoptics_service(host):
     s = host.service('swisnapd')
 
     assert s.is_running
+    assert s.is_enabled
