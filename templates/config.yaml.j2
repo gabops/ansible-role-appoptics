@@ -39,7 +39,7 @@ control:
     publisher:
       publisher-appoptics:
         all:
-          url: {{ appoptics_url }}
+          url: {{ appoptics_metrics_url }}
           token: "{{ appoptics_token }}"
           {% if appoptics_hostname_alias | length %}
           hostname_alias: {{ appoptics_hostname_alias }}
@@ -58,7 +58,7 @@ control:
           {% endif %}
       publisher-processes:
         all:
-          url: {{ appoptics_url }}
+          url: {{ appoptics_agent_url }}
           token: "{{ appoptics_token }}"
 
   {% if appoptics_global_tags is defined and appoptics_global_tags is mapping and appoptics_global_tags | length %}

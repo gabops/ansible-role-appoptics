@@ -3,7 +3,7 @@
   hosts: all
   vars:
     appoptics_token: secretoken123abc
-    appoptics_url: https://api.appoptics.com/v1/measurements
+    appoptics_metrics_url: https://api.appoptics.com/v1/measurements
     appoptics_hostname_alias: hostname-01
     appoptics_proxy_url: https://192.168.0.1:8080
     appoptics_proxy_user: user
