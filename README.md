@@ -36,7 +36,8 @@ Role Variables
 | appoptics_task_path | /opt/SolarWinds/Snap/etc/tasks.d | Search path for task file. |
 | appoptics_plugins_include | /opt/SolarWinds/Snap/etc/plugins.d | Search path for plugin configuration files. |
 | appoptics_token | "" | Sets the appoptics authentication token. |
-| appoptics_url | https://api.appoptics.com/v1/measurements | Sets the appoptics endpoint. |
+| appoptics_metrics_url | https://api.appoptics.com/v1/measurements | Sets the appoptics metrics endpoint. |
+| appoptics_agent_url | https://api.appoptics.com/v1/agent/report | Sets the appoptics agent endpoint. |
 | appoptics_hostname_alias | "" | Sets a hostname alias if you want want a different host tag than the current hostname of the host. |
 | appoptics_proxy_url | "" | Sets the proxy url. |
 | appoptics_proxy_user | "" | Sets the user for authenticating against the proxy configured in 'proxy url' field. |
@@ -70,7 +71,7 @@ Example Playbook
     - hosts: servers
       vars:
         appoptics_token: secretoken123abc
-        appoptics_url: https://api.appoptics.com/v1/measurements
+        appoptics_metrics_url: https://api.appoptics.com/v1/measurements
         appoptics_hostname_alias: hostname-01
         appoptics_proxy_url: https://192.168.0.1:8080
         appoptics_proxy_user: user

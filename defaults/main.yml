@@ -26,7 +26,8 @@ appoptics_task_path: /opt/SolarWinds/Snap/etc/tasks.d
 appoptics_plugins_include: /opt/SolarWinds/Snap/etc/plugins.d
 
 appoptics_token: ""
-appoptics_url: https://api.appoptics.com/v1/measurements
+appoptics_metrics_url: https://api.appoptics.com/v1/measurements
+appoptics_agent_url: https://api.appoptics.com/v1/agent/report
 appoptics_hostname_alias: ""
 appoptics_proxy_url: ""
 appoptics_proxy_user: ""
