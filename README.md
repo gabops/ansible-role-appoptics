@@ -34,6 +34,7 @@ Role Variables
 | appoptics_temp_dir_enable | false | Sets whether the application startup leverage the `temp_path_dir to start plugins. The use of the temporary location is considered legacy functionality. |
 | appoptics_plugin_path | /opt/SolarWinds/Snap/bin | Search path for load plugin binaries. |
 | appoptics_task_path | /opt/SolarWinds/Snap/etc/tasks.d | Search path for task file. |
+| appoptics_task_autoload_path | /opt/SolarWinds/Snap/etc/tasks-autoload.d | Search path for task-autoload file. |
 | appoptics_plugins_include | /opt/SolarWinds/Snap/etc/plugins.d | Search path for plugin configuration files. |
 | appoptics_token | "" | Sets the appoptics authentication token. |
 | appoptics_metrics_url | https://api.appoptics.com/v1/measurements | Sets the appoptics metrics endpoint. |
@@ -53,6 +54,7 @@ Role Variables
 | appoptics_rest_api_rest_port | 21413 | Sets the port to start the REST API server on. |
 | appoptics_plugins| [{file_name: "", content: {} }]| Defines the plugins to be used for appoptics. The content of the "content" variable will be dumped directly in the file declared in "file_name:" |
 | appoptics_tasks| [{file_name: "", content: {} }]| Defines the tasks to be used for appoptics. The content of the "content" variable will be dumped directly in the file declared in "file_name:" |
+| appoptics_autoload_tasks| [{file_name: "", content: {} }]| Defines the autoload tasks to be used for appoptics. The content of the "content" variable will be dumped directly in the file declared in "file_name:" |
 
 
 > For more detailed information about agent configuration see [Appoptics agent configuration](https://docs.appoptics.com/kb/host_infrastructure/host_agent/configuration/)
@@ -105,8 +107,26 @@ Example Playbook
                     /mysql/aborted/clients: {}
               publish:
                 - plugin_name: publisher-appoptics
-      roles:
-         - role: gabops.appoptics
+        appoptics_autoload_tasks:
+          - file_name: task-bridge-tomcat.yaml
+            content:
+              version: 2
+
+              schedule:
+                type: cron
+                interval: "0 * * * * *"
+
+              plugins:
+                - plugin_name: bridge
+                  config:
+                    tomcat:
+                      url: "http://127.0.0.1:8080/manager/status/all?XML=true"
+                      username: "foo"
+                      password: "passwd"
+                  publish:
+                    - plugin_name: publisher-appoptics
+              roles:
+                 - role: gabops.appoptics
 ```
 
 License

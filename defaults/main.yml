@@ -23,6 +23,7 @@ appoptics_temp_dir_path: /tmp/SolarWinds/Snap
 appoptics_temp_dir_enable: false
 appoptics_plugin_path: /opt/SolarWinds/Snap/bin
 appoptics_task_path: /opt/SolarWinds/Snap/etc/tasks.d
+appoptics_task_autoload_path: /opt/SolarWinds/Snap/etc/tasks-autoload.d
 appoptics_plugins_include: /opt/SolarWinds/Snap/etc/plugins.d
 
 appoptics_token: ""
@@ -51,3 +52,8 @@ appoptics_plugins:
 appoptics_tasks:
   - file_name: ""
     content: {}
+
+appoptics_autoload_tasks:
+  - file_name: ""
+    content: {}
+
