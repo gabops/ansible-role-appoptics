@@ -56,4 +56,3 @@ appoptics_tasks:
 appoptics_autoload_tasks:
   - file_name: ""
     content: {}
-
