@@ -12,3 +12,4 @@ appoptics_group: solarwinds
 appoptics_files_mode: 0644
 appoptics_plugins_config_path: "{{ appoptics_installation_path }}/etc/plugins.d"
 appoptics_tasks_config_path: "{{ appoptics_installation_path }}/etc/tasks.d"
+appoptics_tasks_autoload_config_path: "{{ appoptics_installation_path }}/etc/tasks-autoload.d"
