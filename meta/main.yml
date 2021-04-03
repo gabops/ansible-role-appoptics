@@ -4,22 +4,17 @@ galaxy_info:
   author: Gabriel Suarez
   description: Installs and configures SolarWinds Snap Agent
   license: MIT
-  min_ansible_version: 2.4
+  min_ansible_version: 2.9
   platforms:
     - name: EL
       versions:
-        - 6
         - 7
         - 8
-    - name: Amazon
-      versions:
-        - all
     - name: Amazon Linux 2
       versions:
         - all
     - name: Debian
       versions:
-        - jessie
         - stretch
         - buster
     - name: Ubuntu
